@@ -8,85 +8,66 @@ class Container {
 
     async getAll() {
         try {
-            const content = await fs.promises.readFile(`${this.file}`, 'utf-8');
-            const list = JSON.parse(content);
-            return list;
+            const content = await this.configdb.from(this.table).select('*')
+            return content;
+            
         } catch (error) {
-            console.error('Error: ', error);
+            console.error('ERROR: ', error); throw error;
         }
     }
 
     async getById(id) {
         try {
-            const data = await this.configdb.from(this.table).select('*').where('id', '=', id);
-            
-            if(data.length === 0){
-                return null;
+            const content = await this.configdb.from(this.table).select('*').where('id', '=', id);
+
+            if (content.length === 0) {
+                return ({ ERROR: 'Producto no encontrado' });
             }
-            
-            return data;
+
+            return content;
 
         } catch (error) {
-            console.error('Error: ', error); throw error;
+            console.error('ERROR: ', error); throw error;
         }
     }
 
     async save(element) {
         try {
-            const data = await this.configdb(this.table).insert(element)
-            return data.id;
+            const content = await this.configdb(this.table).insert(element)
+            return content.id;
 
         } catch (error) {
-            console.error('Error: ', error); throw error;
+            console.error('ERROR: ', error); throw error;
         }
     }
 
-    async update(id, elemento) {
+    async update(id, element) {
         try {
-            const content = await fs.promises.readFile(`${this.file}`, 'utf-8')
-            const list = JSON.parse(content);
-            const element = list.find(e => e.id === id);
-            const indexOfElement = list.findIndex(e => e.id === id);
+            const content = await this.configdb.from(this.table).where('id', '=', id).update(element)
 
-            if (!element) {
-                return { error: 'No encontrado' };
+            if (!content) {
+                return { ERROR: 'No encontrado' };
             };
 
-            const updatedList = {
-                ...element,
-                ...elemento
-            }
+            return element;
 
-            list[indexOfElement] = updatedList;
-
-            const listString = JSON.stringify(list, null, 2);
-            await fs.promises.writeFile(`${this.file}`, listString);
-
-            return updatedList;
         } catch (error) {
-            console.error('Error: ', error);
+            console.error('ERROR: ', error); throw error;
         }
     }
 
     async deleteById(id) {
         try {
-            const content = await fs.promises.readFile(`${this.file}`, 'utf-8');
-            const list = JSON.parse(content);
-            const element = list.find(e => e.id === id);
-            const indexOfElement = list.findIndex(e => e.id === id);
+            const content = await this.configdb.from(this.table).where('id', '=', id).del()
 
-            if (!element) {
-                return { error: 'No encontrado' };
+            if (!content) {
+                return { ERROR: 'No encontrado' };
             };
 
-            list.splice(indexOfElement, 1);
-            const listString = JSON.stringify(list, null, 2);
-
-            await fs.promises.writeFile(`${this.file}`, listString);
-            return list;
+            return content;
 
         } catch (error) {
-            console.error('Error: ', error);
+            console.error('ERROR: ', error); throw error;
         }
     }
 }

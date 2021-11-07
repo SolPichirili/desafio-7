@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head.ejs' ); %>
+        <title>Aplicación con chat</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Mi aplicación chat</h1>
+
+        <div class="container">
+            <h2>Servicio de chat</h2>
+            <div>
+                <form id="chat">
+                    <div class="mb-3">
+                        <label class="form-label">E-mail:</label>
+                        <input type="email" class="form-control" id="mail">
+                    </div>
+                    <div class="mb-3" id="savedMessage"></div>
+                    <div class="mb-3">
+                        <label class="form-label">Mensaje:</label>
+                        <input type="text" class="form-control" id="message">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <%- include('../partials/script.ejs'); %>
+</body>
+
+</html>

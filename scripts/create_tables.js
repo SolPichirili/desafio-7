@@ -6,7 +6,7 @@ knexMySQL.schema.createTable('products', (table) =>{
     table.increments('id');
     table.string('name');
     table.string('description');
-    table.string('code');
+    table.integer('code');
     table.string('photo');
     table.integer('price');
     table.integer('stock');
@@ -20,6 +20,7 @@ knexMySQL.schema.createTable('products', (table) =>{
 
 knexSQLite.schema.createTable('messages', (table) =>{
     table.increments('id');
+    table.string('date');
     table.string('mail');
     table.string('message');
 })

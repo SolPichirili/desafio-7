@@ -10,11 +10,13 @@ const optionsMySQL = {
     pool: { min: 0, max: 7 }
 };
 
-module.exports = {
-    options
+const optionsSQLite = {
+  client: 'sqlite3',
+  connection: {filename: '../DB/ecommerce.sqlite'},
+  useNullAsDefault: true
 };
 
-const optionsSQLite = {
+const optionsSQLite2 = {
   client: 'sqlite3',
   connection: {filename: './DB/ecommerce.sqlite'},
   useNullAsDefault: true
@@ -22,5 +24,6 @@ const optionsSQLite = {
 
 module.exports = {
   optionsMySQL,
-  optionsSQLite
+  optionsSQLite,
+  optionsSQLite2
 }
