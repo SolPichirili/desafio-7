@@ -4,11 +4,13 @@
 <head>
     <%- include('../partials/head.ejs' ); %>
         <title>Aplicación con chat</title>
+        <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <h1>Mi aplicación chat</h1>
+        <h2 class="#average"></h2>
 
         <div class="container">
             <h2>Servicio de chat</h2>
@@ -17,6 +19,16 @@
                     <div class="mb-3">
                         <label class="form-label">E-mail:</label>
                         <input type="email" class="form-control" id="mail">
+                        <label class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="name">
+                        <label class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="lastname">
+                        <label class="form-label">Edad:</label>
+                        <input type="text" class="form-control" id="age">
+                        <label class="form-label">Alias:</label>
+                        <input type="text" class="form-control" id="alias">
+                        <label class="form-label">Avatar (URL):</label>
+                        <input type="url" class="form-control" id="avatar">
                     </div>
                     <div class="mb-3" id="savedMessage"></div>
                     <div class="mb-3">
@@ -27,7 +39,7 @@
                 </form>
             </div>
         </div>
-        <%- include('../partials/script.ejs'); %>
+        <script src="/js/index.js"></script>
 </body>
 
 </html>

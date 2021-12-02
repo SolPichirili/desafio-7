@@ -2,7 +2,7 @@ const express = require('express');
 const { Server: SocketServer } = require('socket.io');
 const { Server: HttpServer } = require('http');
 
-const productsRouter = require('./routers/products');
+const fakerProducts = require ('../public/js/products');
 
 const { getMessages, saveMessages } = require('./models/messages');
 
@@ -14,8 +14,6 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.use(express.static('public'));
-
-server.use('/api/productos', productsRouter);
 
 server.set('view engine', 'ejs');
 
@@ -37,6 +35,13 @@ io.on('connection', async (socket) => {
 
 server.get('/', (req, res) => {
     res.render('../views/pages/index.ejs');
+});
+
+server.get('/api/productos-test', (req, res)=>{
+    const products = fakerProducts;
+    res.render('../views/pages/products.ejs', {
+        productos: products
+    });
 });
 
 const app = httpServer.listen(port, () => {

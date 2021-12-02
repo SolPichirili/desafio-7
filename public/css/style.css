@@ -22,3 +22,12 @@ h2 {
     font-style: italic;
     display: inline;
 }
+
+button{
+    margin-bottom: 5%;
+}
+
+img {
+    width: 10%;
+    height: 10%;
+}

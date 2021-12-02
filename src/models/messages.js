@@ -1,16 +1,16 @@
-const Container = require('../../Container');
-const { optionsSQLite2 } = require('./dataBasesConfig');
+const ContainerFs = require('../containers/containerFs');
+const { normalizeMessages } = require('../utils/normalize');
 
-const messagesContainer = new Container(optionsSQLite2, 'messages');
+const messagesContainer = new ContainerFs('./data/messages.json');
 
 const getMessages = async () => {
     const messages = await messagesContainer.getAll();
-    return messages;
+    return normalizeMessages({id: 'mensajes', messages});
 };
 
 const saveMessages = async (message) => {
-    const idSavedMessages = await messagesContainer.save(message);
-    return idSavedMessages;
+    const savedMessages = await messagesContainer.save(message);
+    return savedMessages;
 };
 
 module.exports = {
