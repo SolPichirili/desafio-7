@@ -2,7 +2,7 @@ const express = require('express');
 const { Server: SocketServer } = require('socket.io');
 const { Server: HttpServer } = require('http');
 
-const fakerProducts = require ('../public/js/products');
+const fakerProducts = require('../public/js/products');
 
 const { getMessages, saveMessages } = require('./models/messages');
 
@@ -37,7 +37,7 @@ server.get('/', (req, res) => {
     res.render('../views/pages/index.ejs');
 });
 
-server.get('/api/productos-test', (req, res)=>{
+server.get('/api/productos-test', (req, res) => {
     const products = fakerProducts;
     res.render('../views/pages/products.ejs', {
         productos: products

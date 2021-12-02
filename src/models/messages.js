@@ -5,7 +5,7 @@ const messagesContainer = new ContainerFs('./data/messages.json');
 
 const getMessages = async () => {
     const messages = await messagesContainer.getAll();
-    return normalizeMessages({id: 'mensajes', messages});
+    return normalizeMessages(messages);
 };
 
 const saveMessages = async (message) => {
